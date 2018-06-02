@@ -1,0 +1,31 @@
+\chapter{Technology and Method}
+\label{chap:process}
+
+A lot of the technologies in use are the same that were used during the autumn project, with a few changes and additions. The particular technologies are outlined in subsections
+\section{Technologies}
+
+\subsection{Javascript + MithrilJS}
+MithrilJS is a client side library for building single page web applications\cite{mithriljs}. It does well in performance-tests compared to AngularJS and React and the download-size is tiny in comparison\cite{mithril-framework-comparison}. It features a style of development that omits HTML, which is part of the reason as to why it was chosen.
+
+\subsection{ReactiveJS}
+
+\subsection{Python + AsyncIO}
+AsyncIO is a module for python that provides infrastructure for single-threaded concurrent applications\cite{python-asyncio}. It is used in cion in the web API, backend and catalyst components. 
+
+AIOHTTP is an asynchronous HTTP client and server for asyncio and python. In cion it is primarily used in the API-component for the web-page and the catalyst webhook component\cite{python-aiohttp}.
+
+\subsection{RethinkDB}
+RethinkDB is a JSON document store designed for real-time applications\cite{rethinkdb}. It was already in use before this project was started, and it was selected due to realtime communication being a central part of the cion solution and because cion does not really use relational data.
+
+\subsection{Caddy}
+Caddy, or caddyserver, is an easy-to-use web server with great support for HTTPS\cite{caddyserver}. It is used in cion on all components exposing a web-service. The reason it is used is to provide users with an easy way for cion to handle HTTPS on its own. Without caddy it would require the user to have some sort of a TLS termination proxy, though the user can still opt for the the latter solution if they want to do so.
+
+\section{Distribution of Roles}
+As is already noted in the project plan, the two main components of the project are the front- and backend. Harald Floor Wilhelmsen had the main responsibility for the frontend, while Erlend Tobiassen had the main responsibility for the backend. Kenan Mahic had the role of researching the possibility of expanding support to Kubernetes as well as making sure the front- and backend worked well together.
+
+\section{Scientific Method}
+Evaluating security in a meaningful way has been a longstanding debate in the security community. There are few metrics, they are hard to measure, and it is difficult to actually ascertain anything from the few data points gathered. This makes it difficult to assess from both a quantitative and qualitative approach. For this paper though we have decided to go for a hybrid approach. As is mentioned in our theory, looking at the attack surface of theoretical self-hosted vs externally-hosted configurations will be the primary way in which the authors will conduct their quantitative research.
+
+The authors applied their domain knowledge gained through developing a CD solution to create a list of resources that potentially could be gained access to. From this list of resources the type hierarchy in figure \ref{fig:th} was developed. The list of attack classes was assigned an payoff based on how attractive, judged by the authors domain knowledge, of an target each attack class is. The attack surface measurement of each configuration was then calculated as the weighted sum $\sum n(S_i)\times w_i$ where $n(S_i)$ is the number of times attack class $i$ appeared in the configuration and $w_i$ is the payoff weight associated with attack class $i$. This gives us an measurement of the attack surface suitable for comparing the configurations against each other.
+
+Qualitative results are created by interpreting the relative attack surfaces using deductive reasoning.

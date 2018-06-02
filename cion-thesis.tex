@@ -15,13 +15,21 @@
 %%   BPROG  Bachelor in Programming [Games|Applications]
 %%   for example \documentclass[BCE,norsk,twoside]{ntnuthesis/ntnubachelorthesis}
 
-\documentclass[BPROG,norsk,oneside]{ntnuthesis/ntnubachelorthesis}
+\documentclass[BIND,english,oneside]{ntnuthesis/ntnubachelorthesis}
 
 \usepackage{csvsimple}
 \usepackage{booktabs}
 
 \usepackage{gnuplottex}
 
+\usepackage{svg}
+\usepackage{imakeidx}
+\usepackage{csquotes}
+\usepackage{epigraph}
+\usepackage{tabularx}
+\usepackage{tikz}
+\usetikzlibrary{graphs,graphdrawing,graphdrawing.trees}
+\usepackage[super]{nth}
 
 \definecolor{darkgreen}{rgb}{0,0.5,0}
 \definecolor{darkred}{rgb}{0.5,0.0,0}
@@ -59,7 +67,7 @@
 
 \newcommand{\dn}[1]{} % add the d to a note to say that you have finished with it.
 
-\newcommand{\gj}{NTNU i Gj\o{}vik}
+\newcommand{\gj}{NTNU i Trondheim}
 
 
 % Norwegian Characters,  needs the {} or to be separate from the next letters
@@ -67,15 +75,15 @@
 % \O{}   \AA{}   \AE{}   you can also just leave a space and latex will remove it
 %    eg, NTNU i Gj\o vik  or NTNU i Gj\o{}vik
 
-
-
-
-
 \begin{document}
 
 \input{inc/BachelorThesisData} % this is the file which contains all the details about your thesis
 
 \makefrontpages % make the frontpages
+
+% Dont indent paragraphs
+\setlength{\parindent}{0em}
+\setlength{\parskip}{8pt}
 
 \input{inc/preface}
 
@@ -87,24 +95,18 @@
 
 
 \input{inc/introduction}
-\input{inc/requirements}
-\input{inc/technical}
-\input{inc/process}
-\input{inc/implementation}
-\input{inc/deployment}
-\input{inc/testing}
+\input{inc/theory}
+\input{inc/technologyandmethod}
+\input{inc/results}
 \input{inc/discussion}
 \input{inc/conclusion}
-
 
 \bibliographystyle{ntnuthesis/ntnubachelorthesis}
 \bibliography{inc/BachelorExample}
 
 \appendix %after this line all chapters will have letters instead of numbers
-\input{inc/projectplan}
-
+%\input{inc/projectplan}
 %\input{inc/gantt}
-\input{inc/meetinglog}
 %\input{inc/worklog}
 
 \end{document}

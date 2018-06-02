@@ -1,24 +1,27 @@
 \chapter{Introduction}
 \label{chap:introduction}
+The TIP-team at Trondheim municipality had a desire for a more agile development process and wanted a continuous deployment setup for their services. Though because of security concerns they decided that none of the solutions that were offered for- and compatible with their current environment were responsible to implement. This is why the idea for a self-hosted continuous deployment service was born.
 
-With a new beginning there is a new template.  
+The need for the cion product came from security concerns raised by the TIP-team at Trondheim municipality. They have been users of Continuous Integration, and to some degree Continuous Deployment and Delivery (CD) for a while, but as the scope of their work increased, so did the need for added security and functionality. After careful review they came to the conclusion that the current solution of using bitbucket pipelines could not be expanded to supply CD without introducing security risks. Bitbucket pipelines requires the user to expose a management API out to the open internet, and this raises several security concerns that (are described in part 3.5 of the vision document) (will be explored in this document?).
 
-This thesis template is being developed during the first semester of the new NTNU. The purpose is to help unify student production of bachelor theses.  Hopefully it will be used by many of the student in the now largest University in Norway.
+\section{Motivation}
+The motivation for this project from the groups point of view came from the desire to work with containerisation and brand new technologies. Since containerisation is one of the big new buzzwords along with big data and machine learning this was a big opportunity to get acquainted with future technology. There is little focus on these new technologies in the current curriculum so the participants of this project felt this was a good way to familiarise themselves with technology they will probably end up using in the near future.
 
-This template has three roles.  One as an example of using \LaTeX, the second as an example structure for a development focused bachelor thesis, and finally as information about how to use \LaTeX.
+\section{Research and Hypothesis}
+\begin{tabularx}{\linewidth}{X X}
+    \epigraph{Developers and businesses avoid CD out of fear for applications hosted outside their control.}{\textit{Research problem}}
+    & \epigraph{Which, if any, security benefits arise from self-hosted CD solutions, as opposed to cloud-based solutions?}{\textit{Research question}}
+\end{tabularx}
+As a result of using a self-hosted CD solution the authors expect to see a reduced risk associated with use of CD. It is possible that services that would be facing the internet in a cloud-based solution could be internal in a self-hosted solution. If so, each service available to the internet in all likelihood introduces multiple attack vectors to either the host or the user.
 
-\section{Using \LaTeX}
-The best place to find information and help is \href{http://www.wikibooks.org}{TexExchange} \url{www.wikibooks.org}~\cite{texexchange}.
+It is also speculated that some of the services facing the internet would necessarily need control of high risk infrastructure. A cloud-based CD solution needs the ability to launch and restart applications running in critical environments, in the case of CD even the production environment, from a foreign server. If this is the case trusting the foreign entity poses a risk any security aware user or group should be wary of. Even if the foreign entity is trustworthy they might be a competitor or otherwise unfit to assume control over important infrastructure.
 
-\subsection{Writing}
-Part of the justification for using \LaTeX is that it encourages you to think about the word independent of the layout. The layout of the thesis should be done by experts. That is what \LaTeX give you, and expert's advice on how to lay out a thesis. 
+\section{Report Structure}
+The report is structured into six main chapters that cover larger subjects. The chapters are further divided into multiple subsections. The six main chapters are the introduction, theory, technology \& method, results, discussion, and the conclusion \& future work. The introduction serves as a way to introduce the research question and explain the rest of the report. In the theory part the aim is to present the theoretical background that we base our decisions and work on. In chapter three, Technology and Method, the technologies that are used in the software project are explained and the work process during development is described. In the the results chapter, the scientific, engineering and administrative results are presented. These results are then reflected upon in chapter 5 discussion. And finally for the Conclusion and Future Work chapter we will view how much of our vision we have actually achieved as well as presenting work that the project is currently missing and could be implemented in the future.
 
-When writing get the text into the document and then worry about cleaning it up after. Sitting paralised without writing anything does not help the document.  
-
-If it helps, summarise the paragraphs you plan to write in a few words and enter them as a list of ideas or objectives for the paragraph.  This allows you to see the structure of the thesis before you have written it all down.
-
-
-
+\section{Acronyms and Glossary}
+Acronyms and Glossary is described in the Terms and Definitions document.
+% referanse
 
 
   

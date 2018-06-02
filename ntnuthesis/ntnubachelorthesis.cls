@@ -4,7 +4,7 @@
 %%
 %% CHANGE LOG:
 %%
-%% importing much from the gucthesis.cls template by Ivar Farup
+%% importing much from the gucthesis.cls template by Ivar arup
 %%
 %%
 %% TODO:
@@ -731,7 +731,7 @@ Use $\backslash$useyear\{<year>\} to set year.
 	N\o{}kkelord: & \nmt@keywordsNOR\\
 	Antall sider: & \pageref{endofmain}\\
 	Antall vedlegg: & \total{appendixchapters}\\
-	Tilgjengelighet: & \AA{}pen\\ % this needs updating \nmt@pubNOR}\\
+	Tilgjengelighet: & Åpen kildekode iht. lisens GPLv3\\
 		&\\
 	\hline\\
 	Sammendrag: & \nmt@descNOR\\
@@ -769,7 +769,7 @@ Use $\backslash$useyear\{<year>\} to set year.
 	Keywords: & \nmt@keywords\\
 	Pages: & \pageref{endofmain}\\
 	Attachments: & \total{appendixchapters}\\
-	Availability: & Open\\ % this needs updating to use \nmt@pub}\\
+	Availability: & Open source licensed under GPLv3\\ % this needs updating to use \nmt@pub}\\
 		&\\
 	\hline\\
 	Abstract: & \nmt@desc\\
