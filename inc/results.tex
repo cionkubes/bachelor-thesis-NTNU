@@ -4,16 +4,70 @@
 In this section we will present our results. The results in the scientific part will be in relation to our research question and hypothesis. In the engineering part we will present how many of product goals we achieved at time of delivery. Different types of tests also go under this part. The final part is where we will show all our administrative results. This includes project planning, time sheets and documentation of our development process.
 
 \section{Scientific Results}
-We will be comparing self-hosted solutions versus rival 
+The management API and deployment trigger may be protected from the internet in a self-hosted solution. By potentially operating on a physically separated network when this would be impractical or impossible in an external solution. The authors have also found that in an external solution it is necessary to trust the host with credentials giving them access to the environment APIs.
 
-\begin{tabularx}{\linewidth}{|c||X|X|X|}
-    \hline
-    Deployment Tool & Hosted Externally & Third Party Access & Build-Trigger Exposed \\ \hline\hline
-    Bitbucket Pipeline & YES & YES & YES \\ \hline
-    Jenkins & NO\footnote{Unless Jenkins is hosted locally} & YES & YES \\ \hline
-    Travis & YES & YES & YES \\ \hline
-    Self-hosted & NO & NO & NO \\ \hline
-\end{tabularx}
+
+The count of each attack class in the hypothetical external solution and self-hosted solution. Where $n$ is the number of environments managed by the \acrshort{CD} solution.
+\begin{table}[ht]
+    \begin{tabularx}{\textwidth}{|X|c|c|}
+        \hline
+        \textbf{Attack class}                  & \textbf{External} & \textbf{Self-hosted}\\ \hline \hline
+        open\_TCP/UDP-socket                   & 0 & 0        \\ \hline
+        open\_TCP/UDP-socket                   & $1+n$ & $1+n$\\ \hline
+        world-accessible\_TCP/UDP-socket       & $1+n$ & 0    \\ \hline
+        open\_unsecured\_env-mgmt              & 0     & 0    \\ \hline
+        open\_secured\_env-mgmt                & 0     & n    \\ \hline
+        world\_accessible\_secured\_env-mgmt   & n     & 0    \\ \hline
+        third-party\_credentials               & n     & 0    \\ \hline
+        world-accessible\_deployment-trigger   & 1     & 0    \\ \hline
+        locally-accessible\_deployment-trigger & 1     & 1    \\ \hline
+    \end{tabularx}
+    \caption{The number of times each attack class appears in the solutions}
+    \label{tab:result1}
+\end{table}
+
+The the weighted sum, estimating the attack surface, of the hypothetical external solution and self-hosted solution.
+\begin{table}[ht]
+    \begin{tabularx}{\textwidth}{|X|c|c|}
+        \hline
+        \textbf{Solution}  & \textbf{Attack surface} & \textbf{Sum}\\ \hline \hline
+        External           & $0.3\times(1+n) + 0.4\times(1+n) + 0.3\times n + n + 0.6 + 0.4$ & $2n + 1.7$\\ \hline
+        Self-hosted        & $0.3\times(1+n) + 0.2\times(n) + 0.4$ & $(n + 1.4)/2$\\ \hline
+    \end{tabularx}
+    \caption{The attack surfaces of the solutions}
+    \label{tab:result1}
+\end{table}
+
+\begin{center}
+    \begin{figure}
+        \begin{tikzpicture}
+        \begin{axis}[
+            axis lines = left,
+            xlabel = {Number of environments ($n$)},
+            ylabel = {Attack surface},
+        ]
+        %Below the red parabola is defined
+        \addplot [
+            domain=0:20, 
+            samples=100, 
+            color=red,
+        ]
+        {2*x + 1.7};
+        \addlegendentry{External}
+        %Here the blue parabloa is defined
+        \addplot [
+            domain=0:20, 
+            samples=100, 
+            color=blue,
+            ]
+            {0.5*x + 0.7};
+        \addlegendentry{Self-hosted}
+        \end{axis}
+        \end{tikzpicture}
+        \caption{Attack surface graph}
+        \label{fig:my_label}
+    \end{figure}
+\end{center}
 
 \section{Engineering Results}
 % Planned features where implemented
@@ -52,7 +106,7 @@ The \textbf{body} is the body of the HTTP-request to send to the configured URL.
 
 The above example generates a JSON-body containing exactly one key-value-pair, containing the service-name extracted from the event data. 
 The user has to escape curly brackets, as shown above, due to how python's format-function tries to interpret them as variable-names.
-The above body-string would result in something like the following when the field "service-name" in the event data is "cion\_api":
+The above body-string would result in the following when the field "service-name" in the event data is "cion\_api":
 
 \begin{verbatim}
     {
@@ -71,7 +125,7 @@ A permissions system was implemented to allow administrators specify what featur
 
 
 \subsection{User settings/profile page}
-The \textit{user settings}-, now named the \textit{profile}-page is implemented as specified in the requirements document. With fields to change the logged in user's password and gravatar-email. The user will only be able to change the password if they enter their old password. After changing their password they are logged out. 
+The \textit{user settings}-, now named the \textit{profile}-page is implemented as specified in the requirements document. With fields to change the logged in user's password and gravatar-email. The user will only be able to change the password if they enter their old password. After changing their password they are logged out.
 
 \subsection{Service update scheduling (Scheduled deployment)}
 The individual service page has gotten an upgrade and a new feature was added, service update scheduling. It allows users to schedule the updating of a service to a specific time and date.

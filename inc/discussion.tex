@@ -3,7 +3,21 @@
 
 \section{Scientific}
 %Hvorfor holdt hypotesene, eller hvorfor holdt ikke hypotesene? 
+There is a quantifiable security advantage in using self-hosted CD solution. The authors saw that the security risk associated with using an self-hosted CD solution is significantly reduced as compared with using an externally hosted one. The risk assorted is dependant on, and grows with, the number of environments managed by the CD solution. In an external solution the risk per environment grows faster than in a self-hosted solution. A typical small scale team might have 3 environments---production, quality assurance and testing---in this case the attack surface of an external solution is 3.5 times as large as a self-hosted solution.
+
+A large part of the attack surface consists of the services required for environment management and deployment triggers. In order for the services to work the environments and the CD solution needs to communicate with each other. This makes it impractical to avoid communication through the internet for externally hosted solution, this in turn exposes the services to a plethora of attackers that otherwise would have to get physical access.
+
+In order for the CD solution to function it needs the ability to launch and restart applications running in the environments the solution is configured to manage. In the case of an externally hosted solution the certificates granting this permission has to be given out to the third party hosting the solution. This is a huge concern, even though these certificates can be revoked, as these certificates is often synonymous with admin access to the environment server.
+
 %Drøft hvordan resultatene kan forstås i forhold til eller som svar på problemstillingen.
+The research problem posed that "\textit{Developers and businesses avoid CD out of fear for applications hosted outside their control.}" Based on the results the authors are of the opinion that this fear is justified. As such there is a need for a CD solution that can be self-hosted and that is open-source so thatthe solutiont can be audited.
+
+\subsection{Caveats}
+\begin{itemize}
+    \item The list of attack classes and their assigned payoff is not based on empirical fact but the authors knowledge of the systems and their implementation.
+    \item The attack surface is measured of a minimal imagined CD solution, any specific implementation of a CD system, including the implementation by the authors, may have features that increase their attack surface.
+    \item The results are only meaningful when compared with systems in terms of the same attack classes.
+\end{itemize}
 
 \section{Engineering}
 % How did the end product turn out?
@@ -13,27 +27,37 @@
 % What was good about how the features were implemented?
 %    Write about how the webhooks feature opens up cion to be part of a larger chain of CI/CD. As in triggering other services to for example run integration tests after a deploy or similar.
 % What was not so good?
-All features the requirements in the requirements document where fulfilled. Some features and changes not specified in the requirements document were also implemented. These changes were namely a page in the web UI to add and edit configured environments, polishing of the UI on multiple places, changes to existing features to make them easier to use and a log-view page that lets the user traverse and filter cion's deployment-logs.
+All features the requirements in the requirements document where fulfilled. Some features and changes not specified in the requirements document were also implemented. These changes were namely a page in the web UI to add and configure environments, polishing of the UI on multiple pages, changes to existing features to make them easier to use and a log-view page that lets the user traverse and filter cion's deployment-logs.
 
 A lot of the technologies used in the original fall project were new to the team members, which means that they learned a lot through the fall project. This resulted in some code written in unnecessarily complex or inefficient ways. A lot of cleanup was done through this project to make a lot of code cleaner and faster, and some elements in the UI was re-designed to create more consistency across the site. This makes the UI easier to use, because more of the pages now function in more similar ways.
 
 All features except the listed "Post deploy behaviour" were directly requested by the contractor. The post-deploy feature was thought of by the team members and was implemented as "Webhooks". It was implemented because it allows cion to trigger other services after deployment. Which increases cion's applications.
 An example of a setup where the webhooks-feature is very powerful would be as part of a larger CI/CD solution where staging-tests can be run automatically after an update has been deployed by cion. 
-In such an example cion would deploy the newly built application to a staging environment, which would trigger a webhook to be fired on a service to run integration tests on the application in the staging environment. The service running the tests would then send a webhook back to cion telling it to deploy the application to the production-environment.
+In such an example cion would deploy the newly built application to a staging-environment, which would trigger a webhook to be fired on a service to run integration tests on the application in the staging environment. The service running the tests would then send a webhook back to cion telling it to deploy the application to the production-environment.
 
 \section{Administrative}
 \epigraph{Give me five minutes to chop down a tree and I will spend the first two and a half sharpening my axe.}{Anonymous woodsman}
 %Hva ble bra på grunn av valgt prosess, fremgangsmåte og teknologi?
-%Hva ble ikke bra på grunn av valgt prosess, fremgangsmåte og teknologi? 
+The chosen hybrid project managements methodology allowed the team to work independently and to implement features the best way they saw fit, which resulted in a code base that the team was very comfortable with. This sets up the project for future work better than if a more strict project methodology was used. 
+
+A semi-strict style-checking tool was introduced to encourage consistency across the code base. It did not strictly enforce a code style limiting the developers' creativity, but simply warned programmers when they wrote something that did not conform to the agreed upon style. Introducing this after a large chunk of the code base was already written, the fall-project that created the base software that this product is based upon, did lead to a lot of hours being spent on refactoring, but having a more consistent code base likely resulted in hours being saved as well, due to making the reading of each other's code easier. 
+
+%Hva ble ikke bra på grunn av valgt prosess, fremgangsmåte og teknologi?
+
 %Hva ble bra eller dårlig uavhengig av valgt prosess, fremgangsmåte og teknologi?
+
+
 \subsubsection{Impact}
 %Dere skal også drøfte arbeidet i forhold til et helhetlig systemperspektiv. Sett resultatene inn i en samfunnsmessig og økonomisk, eventuelt også miljømessig, sammenheng.
+
 \subsubsection{Ethics}
 %Analyser relevante etiskeproblemstillinger i forhold til resultatene fra arbeidet. Etikk-kompendiet fra 1.året kan være nyttig, se [Søraker 2013].
+% TODO: We've made a self-hosted CD-solution. And this document concludes that self-hosted CD-tools are more secure than externally hosted / cloud-based solutions.
+There are some ethical concerns regarding the relationship between the product developed as part of this assignment and this report. As part of the assignment the team has made an open-source self-hosted CI/CD-solution called cion, and are to research the security benefits in self-hosted solutions versus externally hosted solutions. The findings of the scientific part of this report conclude that self-hosted \acrshort{CD}-tools are more secure than externally hosted or cloud-based solutions. This could be viewed as self-promotion, so this part of the report is to inform the reader of the ethical concerns regarding a possible vested interest in regards to the conclusion.
 
 
 \subsection{Group Dynamic}
-The teamwork has mostly been flawless. By dividing the work into distinct parts of responsibility you end up depending on each individual delivering on their end. This way of working works really well when it goes well, but can also end really bad. In case of one individual not delivering you have no one else to pick up the slack. This is partly mitigated by the fact that you tend to want to perform when you are relied on, and not be the one that is dragging the others behind. The alternative would be spreading the work across the entire group and working on the same parts together, some form of pairwise programming. This would lessen the problem of one team member slacking, and give fewer code defects. It would also be slower though, and need more man-hours for the same amount of work than if we were to work individually. This is the primary reason we chose to work independently, we weighed man-hours more important than the risks associated by working alone. Since everyone in the group was familiar with each other from previous projects, the risk of someone slacking was not concern at all.
+The teamwork has mostly been free of problems. By dividing the work into distinct parts of responsibility you end up depending on each individual delivering on their end. This way of working works really well when it goes well, but can also end really bad. In case of one individual not delivering you have no one else to pick up the slack. This is partly mitigated by the fact that you tend to want to perform when you are relied on, and not be the one that is dragging the others behind. The alternative would be spreading the work across the entire group and working on the same parts together, some form of pairwise programming. This would lessen the problem of one team member slacking, and give fewer code defects. It would also be slower though, and need more man-hours for the same amount of work than if we were to work individually. This is the primary reason we chose to work independently, we weighed man-hours more important than the risks associated by working alone. Since everyone in the group was familiar with each other from previous projects, the risk of someone slacking was not concern at all.
 
 Some parts did not work that well. Since this is a continuation of a previous project by a group with one new addition, the gap in knowledge between the new addition and the existing group can be substantial. So without a proper introduction or learning period, this can make it really hard for the new person to work independently and take initiative. If we were to do this over again we would definitely take some time at the start of the project to get the new person better acquainted with the system. This problem did get better over time though, but the situation would have bettered more quickly by investing more time in teaching the new member from the start. We would recommend anyone adding a new member to the continuation of a project to dedicate some time to familiarise the new person with the project. We would also recommend the group work together in the same room, the main reasons being it makes it easier to help each other and brainstorm ideas. As well as making it easier for the new member to ask for help when needed.
 

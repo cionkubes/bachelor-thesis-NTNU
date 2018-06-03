@@ -21,6 +21,12 @@
 \usepackage{booktabs}
 
 \usepackage{gnuplottex}
+\usepackage{pgfplots}
+
+\usepackage[numberedsection]{glossaries}
+\renewcommand{\glossarypreamble}{\label{glos}}
+
+\usepackage{doi}
 
 \usepackage{svg}
 \usepackage{imakeidx}
@@ -69,12 +75,15 @@
 
 \newcommand{\gj}{NTNU i Trondheim}
 
+\makeglossaries
+\setglossarysection{chapter}
+
+\input{inc/glossary}
 
 % Norwegian Characters,  needs the {} or to be separate from the next letters
 % \o{}   \aa{}   \ae{}   so at the end of a word you can use \o  \aa   \ae
 % \O{}   \AA{}   \AE{}   you can also just leave a space and latex will remove it
 %    eg, NTNU i Gj\o vik  or NTNU i Gj\o{}vik
-
 \begin{document}
 
 \input{inc/BachelorThesisData} % this is the file which contains all the details about your thesis
@@ -93,7 +102,6 @@
 \listoftables
 \lstlistoflistings
 
-
 \input{inc/introduction}
 \input{inc/theory}
 \input{inc/technologyandmethod}
@@ -108,5 +116,7 @@
 %\input{inc/projectplan}
 %\input{inc/gantt}
 %\input{inc/worklog}
+
+\printglossary
 
 \end{document}

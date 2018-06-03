@@ -18,9 +18,9 @@ Databases traditionally model relationships between data. These kinds of databas
 Document-oriented databases associate keys with structured data referred to as documents. The documents are usually stored in a standardised format like XML or JSON\cite[p.~9]{nosql-ntnu}. The document schemes are not constrained, and as such document-oriented databases fall under the NoSQL category.
 
 \section{Continuous Integration}
-As has been the truth for a while now, the world wants to become more agile. And as we have been delving deeper and deeper into this new world the need for new tools and methods to achieve this has increased. Continuous Integration was one of the first of these new additions, helping developers prevent integration problems, apply quality control and reduce delivery time. The main goal of CI was to detect and correct errors in the code base early, making them easier to handle. This is done through two key aspects. One is forcing developers to commit their changes daily, this makes the updates small and more manageable. The other key aspect is giving the developers swift feedback, this is done by running automatic tests on the build after committing changes. This new approach made it easier to work incrementally and by extension more agile. Most of the benefits of CI are just side effects, stemming from having to commit daily.
+As has been the truth for a while now, the world wants to become more agile. And as we have been delving deeper and deeper into this new world the need for new tools and methods to achieve this has increased. Continuous Integration was one of the first of these new additions, helping developers prevent integration problems, apply quality control and reduce delivery time. The main goal of \gls{CI} was to detect and correct errors in the code base early, making them easier to handle. This is done through two key aspects. One is forcing developers to commit their changes daily, this makes the updates small and more manageable. The other key aspect is giving the developers swift feedback, this is done by running automatic tests on the build after committing changes. This new approach made it easier to work incrementally and by extension more agile. Most of the benefits of \gls{CI} are just side effects, stemming from having to commit daily.
 
-Most of these benefits are based on assumptions in the development world, and there are very few peer-reviewed articles either supporting or disproving these claims. This may be because the claims are hard to test, or there is little interest in the scientific community to answer these questions. Case studies from corporations though, seem to agree with a lot of these claims. But they should not necessarily be viewed as scientific, as they are not peer-reviewed. One of the few scientific articles on the subject though seems to suggest that CI does in fact increase the amount of releases. In fact it appeared that projects using CI had more than double the releases that projects without CI had. 
+Most of these benefits are based on assumptions in the development world, and there are very few peer-reviewed articles either supporting or disproving these claims. This may be because the claims are hard to test, or there is little interest in the scientific community to answer these questions. Case studies from corporations though, seem to agree with a lot of these claims. But they should not necessarily be viewed as scientific, as they are not peer-reviewed. One of the few scientific articles on the subject though seems to suggest that \gls{CI} does in fact increase the amount of releases. In fact it appeared that projects using CI had more than double the releases that projects without \gls{CI} had. 
 
 \begin{displayquote}
 One of the more common claims about CI is that it helps
@@ -55,7 +55,7 @@ Continuous Delivery came as an evolution on Continuous Integration. This new app
     \textbullet ~Faster time to market. It’s not uncommon for the integration and test/fix phase of the traditional phased software delivery lifecycle to consume weeks or even months. When teams work together to automate the build and deployment, environment provisioning, and regression testing processes, developers can incorporate integration and regression testing into their daily work and completely remove these phases. We also avoid the large amounts of re-work that plague the phased approach\cite{continuousdeliveryfaster}.
 \end{displayquote}
 
-The advantages of continuous delivery benefit your corporation more than just in throughput and profitability. They increase employee satisfaction, which in and by itself increases worker productivity\cite{happy}.
+The advantages of \acrshort{CD} benefit your corporation more than just in throughput and profitability. They increase employee satisfaction, which in turn increases worker productivity\cite{happy}.
 
 \begin{displayquote}
     Firms with high-performing IT organisations were twice as likely to exceed their profitability, market share and productivity goals.
@@ -65,7 +65,7 @@ The advantages of continuous delivery benefit your corporation more than just in
     Continuous Delivery measurably reduces both deployment pain and team burnout\cite{forsgren}.
 \end{displayquote}
 
-As cited, CD also has other advantages beneficial to organisations.
+As cited, \acrshort{CD} also has other advantages beneficial to organisations.
 
 \section{Reactive programming}
 Reactive programming is a paradigm applicable when continuous updates of information is preferred. Data that would traditionally be thought of as single data point is in reactive programming thought of as a stream of points over time. Streams can be transformed and combined to form new streams analogous to how cells in a spreadsheet depend on and update each other. Reactive programming enable elegant propagation of change throughout the domain it is applied to.
@@ -74,7 +74,6 @@ Reactive programming is a paradigm applicable when continuous updates of informa
 \section{Security}
 While \textit{attack vector} does not have a definition, in the nomenclature of computer security an attack vector usually refers to the path or mechanism by which a system is exploited or otherwise gained unauthorised access to\cite{av1}\cite{av2}\cite{av3}.
 
-
 The sum of every possible attack vector constructs the \textit{attack surface} of a system. It follows that minimising the attack surface is desirable\cite[p.~1]{as} in a security context. The security community is working on quantitatively measuring the attack surface of a system. Intuitively one might measure the attack surface through the naive methods:
 
 \begin{enumerate}
@@ -82,23 +81,24 @@ The sum of every possible attack vector constructs the \textit{attack surface} o
     \item Tracking known vulnerabilities.
 \end{enumerate}
 
-However Manadhata et al.\cite{as} suggest (1) is dependent on bug discovery. The process may miss---or have false positive---bugs, and it assigns equal severity to all bugs. (2) does not account for the system's configuration nor does the model capture future attackability.
+However Manadhata et al.\cite{as} suggest (1) is dependent on bug discovery. The process may miss---or have false positive---bugs, and it assigns equal severity to all bugs. (2) does not account for the system's configuration nor does the model capture future attackability. Manadhata et al. define\cite{as} a method for measuring attack surface that they view as "meaningful and practical". By applying their method a set of attack classes common for \acrshort{CD} tools can be built from the type hierarchy seen in figure \ref{fig:th}:
 
-Manadhata et al. define\cite{as} a method for measuring attack surface that they view as "meaningful and practical". By applying their method a set of attack classes common for CD tools can be built from the type hierarchy seen in figure \ref{fig:th}:
-
-\begin{tabularx}{\textwidth}{| X | c |}
-    \hline
-    \textbf{Attack class}                  & \textbf{Payoff}\\ \hline \hline
-    open\_TCP/UDP-socket                   & .3\\ \hline
-    world-accessible\_TCP/UDP-socket       & .4\\ \hline
-    open\_unsecured\_env-mgmt              & .6\\ \hline
-    open\_secured\_env-mgmt                & .2\\ \hline
-    world\_accessible\_secured\_env-mgmt   & .3\\ \hline
-    third-party\_credentials               & 1\\ \hline
-    world-accessible\_deployment-trigger   & .6\\ \hline
-    locally-accessible\_deployment-trigger & .4\\ \hline
-\end{tabularx}
-
+\begin{table}
+    \begin{tabularx}{\textwidth}{| X | c |}
+        \hline
+        \textbf{Attack class}                  & \textbf{Payoff}\\ \hline \hline
+        httpd-module                           & .3\\ \hline
+        open\_TCP/UDP-socket                   & .3\\ \hline
+        world-accessible\_TCP/UDP-socket       & .4\\ \hline
+        open\_unsecured\_env-mgmt              & .6\\ \hline
+        open\_secured\_env-mgmt                & .2\\ \hline
+        world\_accessible\_secured\_env-mgmt   & .3\\ \hline
+        third-party\_credentials               & 1 \\ \hline
+        world-accessible\_deployment-trigger   & .6\\ \hline
+        locally-accessible\_deployment-trigger & .4\\ \hline
+    \end{tabularx}
+    \caption{The attack classes and their payoffs.}
+\end{table}
 
 \begin{figure}[h]
 \makebox[\textwidth][c]{
@@ -144,11 +144,11 @@ Leaf nodes represent attack classes.
 \footnotetext{This figure is based on the type hierarchy example\cite{as} presented in the article by Manadhata et al.}
 
 \textbf{httpd-module}: \begin{displayquote}
-"This attack class consists of all resources of type \textit{httpd\_module}. CAN-2003-0789 describes a vulnerability  involving  handling  of  CGI  redirect  in  the \textit{mod\_cgid} module in \textit{apache} which an attacker can exploit to view sensitive information."\footnotemark[2]
+"\textit{This attack class consists of all resources of type \textbf{httpd\_module}. CAN-2003-0789 describes a vulnerability  involving  handling  of  CGI  redirect  in  the \textbf{mod\_cgid} module in \textbf{apache} which an attacker can exploit to view sensitive information.}"\footnotemark[2]
 \end{displayquote}
 
 \textbf{open\_TCP/UDP-socket}: \begin{displayquote}
-"The services  running  on  the system open TCP/UDP sockets and listen for client requests on them. Multiple sockets can be opened by a service and multiple services can share the same socket. This attack class is a subtype of the resource type channel. CVE-2001-0309 describes an attack involving open sockets since the \textit{inetd} daemon does not properly close sockets for internal services such as \textit{daytime} and \textit{echo}, an attacker can cause a denial-of-service attack by opening a series of connections to these services."\footnotemark[2]
+"\textit{The services  running  on  the system open TCP/UDP sockets and listen for client requests on them. Multiple sockets can be opened by a service and multiple services can share the same socket. This attack class is a subtype of the resource type channel. CVE-2001-0309 describes an attack involving open sockets since the \textbf{inetd} daemon does not properly close sockets for internal services such as \textbf{daytime} and \textbf{echo}, an attacker can cause a denial-of-service attack by opening a series of connections to these services.}"\footnotemark[2]
 \end{displayquote}
 
 \footnotetext[2]{Quote taken from Manadhata et al.\cite{as}}
@@ -174,9 +174,9 @@ Since the CD solution requires access to the environment API an attacker could c
 \end{displayquote}
 
 \textbf{world-accessible\_deployment-trigger}: \begin{displayquote}
-As part of a larger system CD solution often deploy based on external triggers. An attacker could fake such an external trigger, especially when some external triggers don't support any kind of identification\cite{docker-no-id}
+As part of a larger system CD solution often deploy based on external triggers. An attacker could fake such an external trigger, especially when some external triggers don't support any kind of identification or encryption.\cite{docker-no-id}
 \end{displayquote}
 
 \textbf{locally-accessible\_deployment-trigger}: \begin{displayquote}
-Like \textit{world-accessible\_deployment-trigger}, but does not allow external triggers.
+Like \textit{world-accessible\_deployment-trigger}, but is only exposed on the internal network. 
 \end{displayquote}
