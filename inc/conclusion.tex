@@ -1,8 +1,14 @@
 \chapter{Conclusion and Future Work}
 \label{chap:conclusion}
+There is a security risk associated with using cloud based solutions for continuous delivery. These risks are alleviated by self-hosting a system. The security benefits from self-hosting originate from minimising the attack surface. Minimising the attack surface is accomplished by reducing the number of internet-facing services like containerisation environment management APIs and deployment triggers.
 
-Throughout our project we have demonstrated that running \acrshort{CD} locally is more than possible.
+Although analysing the security of software systems can be challenging, the authors recommend the article \textit{"Measuring a System’s Attack Surface"} by Pratyusa Manadhata and Jeannette M. Wing as a starting point for quantitatively evaluating the attack surface of such systems.  
+
+To alleviate some challenges with adding a new team member as discussed in \nameref{subsec:groupdynam}, the team would in retrospect have taken more time at the start of the project to get the new addition better acquainted with the system. This problem did get better over time, but the situation would have improved faster by investing more time in teaching the new member from the start. Another lesson learned would be that the group should work together in the same room; the main reason being it makes it easier to help each other and brainstorm ideas. 
+
 
 % future work discuss and theory-craft if cion can be a build service as well, so cion would be a complete CI/CD-solution.
+\section{Future Work}
+The authors would like to see cion support building application images, like docker images, so that it could stand alone as a complete \acrshort{CI/CD} solution. This would allow for cion to be completely isolated behind a private network. This setup would require a locally hosted docker registry reachable from the same network that cion is running in. This would be possible due to cion no longer needing to be activated by an external source like Docker Hub or Bitbucket pipelines.
 
-% environment integration. Integrate cion further into the environments it manages, by supplying a status of the services that are running. This can be something as simple as getting the actual running image of the services, but can also be extended to getting the status of running services and allowing the user to stop and start configured services or similar. If these features were extended enough it would allow cion to replace other management
+Another feature planned is further integration between cion and the environments it is managing. When cion already has access to management \acrshort{API}s, cion could extract real-time data on what applications are running where and application statuses \& states. This integration could also be extended to allow the managing of running applications through the cion web UI, like the ability to start, stop and deploy applications. Cion would then be an all-in-one solution supplying \acrlong{CI}, \acrlong{CD}, and application management.

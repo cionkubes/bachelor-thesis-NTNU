@@ -6,12 +6,29 @@
 %Dato, sted, navn og underskrift av alle prosjektdeltakerne.
 %Et forord i en rapport av denne typen bør ikke være på mer enn én side.
 %Bacheloroppgave som videreføring av høstprosjekt: ”Arbeidsfordelingen” mellom de to emnene (fagene) beskrives her.
-This bachelors assignment is written as the finalisation of our degree in computer science at NTNU. The motivation for this project from the group's point of view came from the desire to work with containerisation and new technologies. Since containerisation is one of the big new buzzwords this was a good opportunity to get acquainted with it. There is little focus on new technologies like this in the students' curriculum, so the participants of the project felt this was a good way to familiarise themselves with technology they will likely use in the future.
+This bachelors assignment is written as the finalisation of our degree in computer science at NTNU. The motivation for this project was the desire to work with containerisation and new technologies. As containerisation is one of the new terms in the IT world, this assignment was a good opportunity to get acquainted with it.
+
+There is little focus on new technologies like this in our curriculum, so the participants of the project felt this was a good way to familiarise ourselves with technology we likely will use in the future.
+
+\chapter*{Acknowledgements}
+First of all we would like to thank our project supervisor Jan Harald Nilsen, for his help and advice during our thesis. Secondly we would also like to extend thanks to Trondheim Municipality for their accommodations, and in particular Runar Andersstuen who has given us counsel through the thesis period.
+
+We would also like to thank the development team of Trondheim municipality IT-services for letting us implement this project and for their constant feedback and ideas.
+
+We would like to thank Elena F. Nordmark for the original logo that our current logo is based upon.
+
+This document is based on a template for theses created by Simon McCallum and Ivar Farup\cite{thesis-ntnu}. It has saved us many hours developing and structuring this document.
+
+\chapter*{Mission Statement}
+The graduate project's mission statement by the \acrfull{TIP} team was: \textit{"Develop and extend cion."} cion is an application that was developed by Harald Floor Wilhelmsen and Erlend Tobiassen during their autumn semester. The work that was done during the autumn semester is described in the autumn project report in appendix \ref{appendix:autumn}. In this project we will, in addition to researching the security concerns raised by \acrshort{TIP}, expand upon the features of the cion product. The product vision is presented in appendix \ref{appendix:vision} where the authors describe the planned additions to cion. 
 
 
-First of all we would like to thank our project supervisor Jan Harald Nilsen, for his help and advisory during our thesis. Secondly we would also like to extend thanks to Trondheim Municipality, especially Runar Andersstuen for their counsel and accommodations during the writing of the thesis. 
+\chapter*{Summary} %the * means do not give the chapter a number
+\label{chap:summary}
+This assignment originally came about as an extension of a project issued by Trondheim municipality during the autumn of 2017. The original project was to develop a self-hosted \acrfull{CI/CD} tool, and the graduate project was the further development of this \acrshort{CI/CD}-tool. This paper aims to establish what the authors have accomplished in regards to the issuer's wishes, and whether there are any security benefits of self-hosting \acrshort{CI/CD} solutions compared to running them externally. To answer this the authors used a method for measuring the security of software systems proposed by Manadhata et al. This method has been slightly changed for this paper's needs, and is further described in section \ref{sec:sciencemethod} Scientific Method.
 
-We would also like to thank Trondheim municipality's development team for their constant feedback and ideas.
-% Elena for logo
-The following assignment smtg stmg
-% TODO smtg smtg
+The authors could not find any previous research on the topic of security in Continuous Deployment applications. So this report is aimed at expanding the available research in this area. 
+
+The report is divided into 6 main chapters. The report structure is further outlined in section \ref{sec:reportstructure} Report Structure.
+The results show that a self-hosted \acrshort{CI/CD} solution is more secure than an externally hosted solution. This may help corporations that have had previous security concerns also make use of Continuous Deployment and its benefits.
+

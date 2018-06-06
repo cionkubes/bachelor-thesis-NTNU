@@ -12,8 +12,8 @@
 %%
 
 %% MACRO
-\newcommand{\NTNU}{{N}orwegian {U}niversity of {S}cience and {T}echnology} %the extra {'s protect upper case
-\newcommand{\NTNUno}{{N}orges teknisk-naturvitenskapelige universitet} 
+\newcommand{\NTNU}{{N}orwegian {U}niversity of {S}cience and {T}echnology (NTNU)} %the extra {'s protect upper case
+\newcommand{\NTNUno}{{N}orges teknisk-naturvitenskapelige universitet (NTNU)} 
 \newcommand{\NTNUgjovik}{{NTNU} i {G}j\o{}vik}
 \newcommand{\NTNUalesund}{{NTNU} i \AA{}lesund}
 

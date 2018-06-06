@@ -19,17 +19,21 @@
 
 \usepackage{csvsimple}
 \usepackage{booktabs}
+\usepackage{wrapfig}
 
 \usepackage{gnuplottex}
 \usepackage{pgfplots}
+\usepackage[titletoc]{appendix}
 
 \usepackage[numberedsection]{glossaries}
-\renewcommand{\glossarypreamble}{\label{glos}}
+\renewcommand{\glossarypreamble}{\label{appendix:glos}}
 
 \usepackage{doi}
 
 \usepackage{svg}
+
 \usepackage{imakeidx}
+
 \usepackage{csquotes}
 \usepackage{epigraph}
 \usepackage{tabularx}
@@ -49,8 +53,6 @@
 
 %Typesetting of C++
 \newcommand{\CPP}[0]{{C\nolinebreak[4]\hspace{-.1em}\raisebox{.1ex}{\small\bf +\hspace{-.1em}+\ }}}
-
-
 
 %\newcommand{\comment}[1]{\textcolor{blue}{\emph{#1}}}  %% use of the colour and you can see how to use commands with parts \comment{so what}
 
@@ -78,6 +80,14 @@
 \makeglossaries
 \setglossarysection{chapter}
 
+
+% TODO: fix toclevel and chapter sub
+\indexsetup{level=\section*,toclevel=section}
+\makeindex[title=Terms and Explanations Index]
+
+\usepackage{idxlayout}
+
+
 \input{inc/glossary}
 
 % Norwegian Characters,  needs the {} or to be separate from the next letters
@@ -90,7 +100,7 @@
 
 \makefrontpages % make the frontpages
 
-% Dont indent paragraphs
+% Don't indent paragraphs
 \setlength{\parindent}{0em}
 \setlength{\parskip}{8pt}
 
@@ -100,7 +110,6 @@
 \tableofcontents
 \listoffigures
 \listoftables
-\lstlistoflistings
 
 \input{inc/introduction}
 \input{inc/theory}
@@ -113,10 +122,39 @@
 \bibliography{inc/BachelorExample}
 
 \appendix %after this line all chapters will have letters instead of numbers
-%\input{inc/projectplan}
-%\input{inc/gantt}
-%\input{inc/worklog}
+\begin{appendices}
+\addtocontents{toc}{\protect\setcounter{tocdepth}{1}}
 
 \printglossary
 
+\chapter{Product vision document}
+\label{appendix:vision}
+\includepdf[pages=-]{inc/appendices/vision.pdf}
+
+\chapter{Requirements document}
+\label{appendix:requirement}
+\includepdf[pages=-]{inc/appendices/requirement.pdf}
+
+\chapter{Feature discussion and decisions}
+\label{appendix:plansndecisions}
+\includepdf[pages=-]{inc/appendices/permissionskubernetes.pdf}
+
+\chapter{Autumn project report}
+\label{appendix:autumn}
+\includepdf[pages=-]{inc/appendices/cion-report.pdf}
+
+\chapter{User test}
+\label{appendix:usertest}
+\includepdf[pages=-]{inc/appendices/user_test.pdf}
+
+\chapter{Code documentation}
+cion-api is the only project with extensive inline- and "docstring" code documentation. Which is why it is the only project included here
+\section{cion-api}
+\includepdf[pages=-]{inc/appendices/cion-api-code-doc.pdf}
+
+\input{inc/appendices/system-doc/system-doc.tex}
+\input{inc/appendices/projecthandbook.tex}
+\input{inc/appendices/terms-explanations.tex}
+
+\end{appendices}
 \end{document}
